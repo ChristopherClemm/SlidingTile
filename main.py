@@ -1,11 +1,13 @@
 
-
+import moves
 
 goal = [[1,2,4],
         [4,5,6],
-        [0,8,7]]
+        [7,8,0]]
 
-initial = [[],[],[]]
+initial = [[1,2,4],
+          [4,5,6],
+          [0,8,7]]
 
 """
 nodes = make queue(makenode(inittalstate)
@@ -16,51 +18,16 @@ node = remove front
 if problem = goaltest succeds then return nodesnodes = queeung function node expand problme operators
 
 """
+def manDist(initial, goal):
+    value = 0
+    size = len(goal)*len(goal)
+    for i in size:
+
+    return value
 
 
+def findIndexOfZero(inittalstate, goal):
 
-
-
-
-#need left
-#need right
-#need up
-#need down
-def printState(goal):
-    for i in goal:
-        print(i)
-    print()
-def left(goal, x, y):
-    if y-1 >= 0:
-        y = y-1
-        temp = goal[x][y]
-        goal[x][y] = 0
-        goal[x][y+1] = temp
-    printState(goal)
-
-def right(goal, x, y):
-    if y+1 <= 2:
-        y = y+1
-        temp = goal[x][y]
-        goal[x][y] = 0
-        goal[x][y-1] = temp
-    printState(goal)
-def down(goal, x, y):
-    if x+1 <= 2:
-        x = x+1
-        temp = goal[x][y]
-        goal[x][y] = 0
-        goal[x-1][y] = temp
-    printState(goal)
-def up(goal, x, y):
-    if x-1 >= 0:
-        x = x-1
-        temp = goal[x][y]
-        goal[x][y] = 0
-        goal[x+1][y] = temp
-    printState(goal)
-
-def findIndexOfZero(goal):
     arr = [0,0]
     for i in range(len(goal)):
         for j in range(len(goal[0])):
@@ -78,11 +45,11 @@ def main():
     x = arr[0]
     y = arr[1]
     print(x,y)
-    printState(goal)
-    left(goal, 2, 0)
-    right(goal,2,0)
-    up(goal,2,1 )
-    down(goal,1, 1)
+    moves.printState(goal)
+    moves.left(goal, 2, 0)
+    moves.right(goal,2,0)
+    moves.up(goal,2,1 )
+    moves.down(goal,1, 1)
     print("hi")
 
 main()
