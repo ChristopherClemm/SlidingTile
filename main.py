@@ -5,9 +5,6 @@ goal = [[1,2,3],
         [4,5,6],
         [7,8,0]]
 
-initial = [[1,2,3],
-          [7,5,6],
-          [4,8,0]]
 
 
 """
@@ -19,6 +16,13 @@ node = remove front
 if problem = goaltest succeds then return nodesnodes = queeung function node expand problme operators
 
 """
+
+def equalArrays(initial, goal):
+    for i in range(len(initial)):
+        for j in range(len(initial)):
+            if initial[i][j] != goal[i][j]:
+                return False
+    return True
 
 def misplaced(initial, goal):
     numMis = 0
@@ -39,7 +43,7 @@ def manDist(initial, goal):
     return value
 
 
-def findIndexOfZero(initial, goal):
+def findIndexOfZero(initial):
 
     arr = [0,0]
     for i in range(len(initial)):
@@ -49,27 +53,81 @@ def findIndexOfZero(initial, goal):
                 return arr
     return arr
 
-def runAlgo(initial,goal):
-    arr = findIndexOfZero(initial, goal)
+def updateQ(curr, queue, seen):
+    arr = findIndexOfZero(curr)
     x = arr[0]
     y = arr[1]
+    if (moves.left(curr, x, y)) not in seen:
+        seen.add(moves.left(curr, x, y))
+        queue.append(moves.left(curr, x, y))
+    if  moves.right(curr, x, y) not in seen:
+        seen.add(right(curr, x, y))
+        queue.append(moves.right(curr, x, y))
+    if  moves.up(curr, x, y) not in seen:
+        seen.add(up(curr,x,y))
+        queue.append(moves.up(curr, x, y))
+    if moves.down(curr, x, y) not in seen:
+        seen.add(down(curr,x,y))
+        queue.append(moves.down(curr, x, y))
+    #queue.append(moves.down(curr,x, y))
+    return queue
+
+
+def runAlgo(initial,goal):
+    arr = findIndexOfZero(initial)
+    x = arr[0]
+    y = arr[1]
+    #need to use priority queue
     queue = []
     queue.append(initial)
+    seen = {}
+    while True:
+        if len(queue) == 0:
+            return False
+        curr = queue.pop(0)
+        #moves.printState(curr)
+        if equalArrays(curr,goal):
+            return curr
+        queue = updateQ(curr, queue, seen)
+        if len(queue)%1000 == 0:
+            moves.printState(curr)
+            print(len(queue))
+
+def left1(initial, x, y):
+    c = [list(row) for row in initial]
+    moves.printState(c)
+    if y-1 >= 0:
+        y = y-1
+        temp = c[x][y]
+        c[x][y] = 0
+        c[x][y+1] = temp
+    #printState(initial)
+    return c
 
 
-    while !queue.empty():
-        curr = queue.pop():
+def test(initial,goal):
+    moves.printState(initial)
+    arr = findIndexOfZero(initial)
+    x = arr[0]
+    y = arr[1]
+    c = left1(initial, x, y)
+    moves.printState(initial)
+    moves.printState(c)
+
+
 
 def main():
     #input ur list
     #which opition do you want to choose
     #perfomr the thing
+    initial = [[1,2,3],
+              [7,5,6],
+              [4,8,0]]
 
-    arr = findIndexOfZero(initial, goal)
-    x = arr[0]
-    y = arr[1]
-    print(x,y)
+    test(initial,goal)
 
+    #print(equalArrays(initial, goal))
+    #runAlgo(initial,goal)
 
     """
     moves.printState(goal)
