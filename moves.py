@@ -2,6 +2,7 @@ def printState(initial):
     for i in initial:
         print(i)
     print()
+    return
 def left(initial, x, y):
     newArray = [list(row) for row in initial]
     if y-1 >= 0:
