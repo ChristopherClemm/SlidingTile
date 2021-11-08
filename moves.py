@@ -1,8 +1,10 @@
+#used for printing out state in nice format
 def printState(initial):
     for i in initial:
         print(i)
     print()
     return
+#copies input and manipluates it with a left move desired
 def left(initial, x, y):
     newArray = [list(row) for row in initial]
     if y-1 >= 0:
@@ -12,6 +14,7 @@ def left(initial, x, y):
         newArray[x][y+1] = temp
     #printState(newArray)
     return newArray
+#copies input and manipluates it with a right move desired
 
 def right(initial, x, y):
     newArray = [list(row) for row in initial]
@@ -22,6 +25,8 @@ def right(initial, x, y):
         newArray[x][y-1] = temp
     #printState(initial)
     return newArray
+#copies input and manipluates it with a down move desired
+
 def down(initial, x, y):
     newArray = [list(row) for row in initial]
     if x+1 <= 2:
@@ -31,6 +36,9 @@ def down(initial, x, y):
         newArray[x-1][y] = temp
     #printState(initial)
     return newArray
+    
+#copies input and manipluates it with a up move desired
+
 def up(initial, x, y):
     newArray = [list(row) for row in initial]
     if x-1 >= 0:
