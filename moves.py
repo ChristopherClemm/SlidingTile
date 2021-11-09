@@ -6,6 +6,7 @@ def printState(initial):
     return
 #copies input and manipluates it with a left move desired
 def left(initial, x, y):
+    #used for coping the array because Python uses pass by object instead of pass by value
     newArray = [list(row) for row in initial]
     if y-1 >= 0:
         y = y-1
@@ -36,7 +37,7 @@ def down(initial, x, y):
         newArray[x-1][y] = temp
     #printState(initial)
     return newArray
-    
+
 #copies input and manipluates it with a up move desired
 
 def up(initial, x, y):

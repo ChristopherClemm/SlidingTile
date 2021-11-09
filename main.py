@@ -8,7 +8,6 @@ goal = [[1,2,3],
         [4,5,6],
         [7,8,0]]
 
-
 #Check if arrays are equal to the goal
 def equalArrays(initial, goal):
     for i in range(len(initial)):
@@ -133,6 +132,7 @@ def updateQ(curr, queue, seen, mode):
 
 
 def runAlgo(initial,goal,mode):
+    maxQ = 0
     arr = findIndexOfZero(initial)
     x = arr[0]
     y = arr[1]
@@ -148,6 +148,8 @@ def runAlgo(initial,goal,mode):
         #if empty return
         if len(queue) == 0:
             return False
+        if len(queue) > maxQ:
+            maxQ = len(queue)
         #print(queue)
         #only use priority queue when user wants it
         if mode == 2 or mode == 3:
@@ -159,6 +161,7 @@ def runAlgo(initial,goal,mode):
         #moves.printState(curr)
         #end state
         if equalArrays(curr.getValue(),goal):
+            print("Max queue size = ", maxQ)
             print("Nodes Expanded = ", nodesExpanded)
             return curr
         #explore the moves for the given node
